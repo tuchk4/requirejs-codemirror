@@ -22,12 +22,12 @@ http://codemirror.net/2/demo/loadmode.html
 
 Default application structure:
 
-|-app/
-|   |
-|   |-src/
-|   |-boot.js
-|
-|-bower_components/
+    |-app/
+    |   |
+    |   |-src/
+    |   |-boot.js
+    |
+    |-bower_components/
 
 
 - **app/** - directory with application scripts
