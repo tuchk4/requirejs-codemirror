@@ -5,5 +5,8 @@
     "**/.*",
     "node_modules",
     "bower_components"
-  ]
+  ],
+  "dependencies": {
+    "CodeMirror": "marijnh/CodeMirror#~4.0.3"
+  }
 }
