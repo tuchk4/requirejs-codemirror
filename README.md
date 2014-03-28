@@ -1,6 +1,6 @@
-### Requriejs and CodeMirror
+## Requriejs and CodeMirror
 
-1. Existing problem
+#### 1. Existing problem
 
 When you need to use CodeMirror:
 
@@ -17,8 +17,6 @@ requrie('code-mirror');
 And all will be ok. But you also need to append CSS file (and this CSS should be only at pages where codemirror is using). This is also not a big problem. A lot of ways how it could be appened.
 
 But main problem - in loading CodeMirror modes.
-
-## 1. Problem with Loading with CodeMirror.autoLoadMode
 
 http://codemirror.net/2/demo/loadmode.html
 
@@ -51,7 +49,7 @@ CodeMirror check if requriejs is used, and if so - CodeMirror will use it. And I
 And it will be not beautiful to require bower_components inside scripts when you should write full path to component. And this path should be relative from current script. Something like ../../../../bower_components/... that is not beautiful :)
 
 
-2. RequireJS plugin for CodeMirror
+#### 2. RequireJS plugin for CodeMirror
 
 Usage:
 
