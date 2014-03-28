@@ -1,4 +1,4 @@
-## Requriejs and CodeMirror
+## Requirejs and CodeMirror
 
 #### 1. Existing problem
 
