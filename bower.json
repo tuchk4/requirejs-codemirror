@@ -1,0 +1,9 @@
+{
+  "name": "requirejs-codemirror",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
