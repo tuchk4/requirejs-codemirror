@@ -11,9 +11,10 @@ define(function(require){
           && config['cm'].hasOwnProperty('path')
           && config['cm'].hasOwnProperty('css')
           && config['cm'].hasOwnProperty('modes')
+          && config['cm'].hasOwnProperty('theme')
           && config['cm']['modes'].hasOwnProperty('path')){
 
-        throw new Error('cm, cm.baseUrl, cm.path, cm.css, cm.modes.path should be defined at requirejs config');
+        throw new Error('cm, cm.baseUrl, cm.path, cm.css, cm.theme, cm.modes.path should be defined at requirejs config');
       }
 
 
@@ -32,9 +33,27 @@ define(function(require){
             document.getElementsByTagName("head")[0].appendChild(link);
         }
       }
+        
+        /** 
+        * Load code mirror theme css file.
+        */
+        function loadTheme(url) {
+
+            var themeId = 'code-mirror-theme';
+            
+            if (!document.getElementById(themeId)) {
+                var link = document.createElement("link");
+                link.type = "text/css";
+                link.rel = "stylesheet";
+                link.href = url;
+                link.id = themeId;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+
+        }
 
       /**
-       * cm - config for codemirror loader from requriejs.config
+       * cm - config for codemirror loader from requirejs.config
        */
       var cm = config.cm;
 
@@ -57,9 +76,10 @@ define(function(require){
       }
 
       loadCss(cm.css);
+      loadTheme(cm.theme);
 
  	  /**
-       * Require all scitps and as return values always will be codemirror object
+       * Require all scripts and as return values always will be codemirror object
        */
       require(scripts, function(CodeMirror){
         onload(CodeMirror);
@@ -67,3 +87,4 @@ define(function(require){
     }
   }
 });
+
