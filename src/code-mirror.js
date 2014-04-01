@@ -11,14 +11,12 @@ define(function(require){
         && config['cm'].hasOwnProperty('path')
         && config['cm'].hasOwnProperty('css')
         && config['cm'].hasOwnProperty('modes')
-        && config['cm'].hasOwnProperty('theme')
         && config['cm']['modes'].hasOwnProperty('path')){
 
-        throw new Error('cm, cm.baseUrl, cm.path, cm.css, cm.theme, cm.modes.path should be defined at requirejs config');
+        throw new Error('cm, cm.baseUrl, cm.path, cm.css, cm.modes.path should be defined at RequireJS config');
       }
 
-
-      var css: {
+      var css = {
         load: function(id, url){
           if (!document.getElementById(id)) {
             var link = document.createElement("link");
@@ -30,8 +28,8 @@ define(function(require){
           }
         },
 
-        loadTheme: function(url){
-          this.load('code-mirror-theme', url);
+        loadTheme: function(theme, url){
+          this.load('code-mirror-theme-' + theme, url);
         },
 
         loadCss: function(url){
@@ -51,6 +49,10 @@ define(function(require){
        */
       scripts.push(cm.baseUrl + cm.path);
 
+      var parsed = name.split(':');
+      var name = parsed[0];
+      var themes = parsed[1];
+
       if (name != '@'){
         var modes = name.split('|');
 
@@ -63,7 +65,24 @@ define(function(require){
       }
 
       css.loadCss(cm.css);
-      css.loadTheme(cm.theme);
+
+      if (themes){
+        if (!cm.hasOwnProperty('themes')){
+          throw new Error('Try to load theme but themes are not defined at config');
+        }
+
+        themes = themes.split('|');
+
+        for (i = 0; i < themes.length; i++){
+          var theme = themes[i];
+
+          if (!cm.themes.hasOwnProperty(theme)){
+            throw new Error('Try to load theme but theme is not defined at config: ' + theme);
+          }
+
+          css.loadTheme(theme, cm.themes[theme]);
+        }
+      }
 
       /**
        * Require all scripts and as return values always will be codemirror object
