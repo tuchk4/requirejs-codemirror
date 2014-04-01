@@ -18,7 +18,7 @@ define(function(require){
 
       var css = {
         load: function(id, url){
-          if (!document.getElementById(id)) {
+          if (req.isBrowser && !document.getElementById(id)) {
             var link = document.createElement("link");
             link.type = "text/css";
             link.rel = "stylesheet";
@@ -90,6 +90,14 @@ define(function(require){
       require(scripts, function(CodeMirror){
         onload(CodeMirror);
       });
+
+      /**
+       * Fucking hard fix for r.js
+       * https://github.com/jrburke/requirejs/pull/1064
+       */
+      if (!req.isBrowser){
+        onload();
+      }
     }
   }
 });
