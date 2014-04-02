@@ -63,6 +63,10 @@ var CodeMirror = require('code-mirror!htmlmixed');
 
 // will require CodeMirror, inlcude CSS file and load htmlmixed and php modes
 var CodeMirror = require('code-mirror!htmlmixed|php');
+
+// will require CodeMirror, inlcude CSS file and load htmlmixed and php modes
+// and ambiance, eclipse and monokai themes.
+var CodeMirror = require('code-mirror!htmlmixed|php:ambiance|eclipse|monokai');
 ```
 
 And plugin should be configured at requirejs.conf:
@@ -76,6 +80,12 @@ requirejs.config({
     path: 'lib/codemirror',
     // path to CodeMirror css file
     css: '/path/to/code-mirror/css/file',
+    // define themes
+    themes: {
+        monokai: '/path/to/theme/monokai.css',
+        ambiance: '/path/to/theme/ambiance.css',
+        eclipse: '/path/to/theme/eclipse.css'
+    },
     modes: {
       // modes dir structure
       path: 'mode/{mode}/{mode}'
