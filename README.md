@@ -41,7 +41,7 @@ So if you want to require bower_component in boot.js file you neeed to set path 
 require('../bower_components/module/module-script');
 ```
 
-And you can not set paths to CodeMirror modes at requirejs.config becasue:
+And you can not set paths to CodeMirror modes at requirejs.config because:
 
 CodeMirror check if requriejs is used, and if so - CodeMirror will use it. And If you descrive path to CodeMirror's mode at requriejs.config -
 **require** function inside modes scitpts will have relative path from **boot.js** and it will be able to load other dependencies because paths will be wrong.
